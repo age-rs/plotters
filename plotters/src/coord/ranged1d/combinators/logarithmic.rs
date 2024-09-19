@@ -151,6 +151,7 @@ impl<V: LogScalable> AsRangedCoord for LogRangeExt<V> {
 }
 
 /// A log scaled coordinate axis
+#[derive(Clone)]
 pub struct LogCoord<V: LogScalable> {
     linear: RangedCoordf64,
     logic: Range<V>,
@@ -181,7 +182,7 @@ impl<V: LogScalable> LogCoord<V> {
         let a = V::from_f64(fv + self.zero_point);
         let b = V::from_f64(self.zero_point);
 
-        (V::as_f64(&a) - V::as_f64(&b)).abs() < std::f64::EPSILON
+        (V::as_f64(&a) - V::as_f64(&b)).abs() < f64::EPSILON
     }
 }
 
